@@ -46,10 +46,10 @@ buttons:{
     width:150,
     height:50,
     "&:focus":{
-        backgroundColor:"#F76E11"},
+        backgroundColor:"#FF2E63"},
     "&:hover":{
         color:"white",
-        backgroundColor:"#F76E11",
+        backgroundColor:"#FF2E63",
         transition:"0.4s ease-in-out"
     },
 }
@@ -75,7 +75,7 @@ const CoinInfo = ({coin}) => {
   return (
     <ThemeProvider theme={darkTheme}>
         <div className={classes.container}>
-            {!coinHistory?(<CircularProgress style={{color:"#F76E11"}} size={250} thickness={2}/>):(
+            {!coinHistory?(<CircularProgress style={{color:"#08D9D6"}} size={250} thickness={2}/>):(
                 <>
                     <Line
                         data={{
@@ -87,7 +87,7 @@ const CoinInfo = ({coin}) => {
                             datasets:[{
                                 data: coinHistory?.map(coin=>coin[1]),
                                 label: `Price (Past ${days} Days) in ${currency}`,
-                                borderColor:"#F76E11"
+                                borderColor:"#FF2E63"
                             }],
                         }}
                         options={{

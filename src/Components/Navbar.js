@@ -7,7 +7,7 @@ const useStyles=makeStyles(()=>({
     flex:1
   },
   logo:{
-    color:'#F76E11',
+    color:'#FF2E63',
     fontFamily:'inherit',
     fontWeight:'bold',
     cursor:'pointer'
@@ -17,7 +17,7 @@ const Navbar = () => {
   const classes=useStyles();
   const darkTheme = createTheme({
     palette: {
-      primary: {main:'#212121'},
+      primary: {main:'#252A34'},
       type:'dark'
     },
   })
@@ -35,8 +35,8 @@ const Navbar = () => {
        }}
        onChange={(e)=>setCurrency(e.target.value)}
        >
-         <MenuItem value={'INR'} style={{color:'#F76E11'}}>INR</MenuItem>
-         <MenuItem value={'USD'} style={{color:'#F76E11'}}>USD</MenuItem>
+         <MenuItem value={'INR'} style={{color:'#08D9D6'}}>INR</MenuItem>
+         <MenuItem value={'USD'} style={{color:'#08D9D6'}}>USD</MenuItem>
        </Select>
        </Toolbar>
        </Container>

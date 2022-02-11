@@ -9,7 +9,7 @@ import Particles from "react-tsparticles";
  const App=()=> {
   const useStyles=makeStyles(()=>({
     App:{
-      backgroundColor:"#212121",
+      backgroundColor:"#252A34",
       color:"white",
       height:"100vh"
     }
@@ -26,7 +26,7 @@ import Particles from "react-tsparticles";
   };
   const darkTheme = createTheme({
     palette: {
-      primary: {main:'#212121'},
+      primary: {main:'#252A34'},
       type:'dark'
     },
   });
@@ -38,18 +38,18 @@ import Particles from "react-tsparticles";
       init={particlesInit}
       loaded={particlesLoaded}
       options={{
-        fpsLimit: 100,
+        fpsLimit: 60,
         interactivity: {
           events: {
             onClick: {
               enable: true,
-              mode: "push",
+              mode: "repulse"
             },
             onHover: {
               enable: true,
               mode: "grab",
             },
-            resize: true,
+            // resize: true,
           },
           modes: {
             bubble: {
@@ -69,10 +69,10 @@ import Particles from "react-tsparticles";
         },
         particles: {
           color: {
-            value: "#FF7A19",
+            value: "#FF2E63",
           },
           links: {
-            color: "#FF7A19",
+            color: "#08D9D6",
             distance: 150,
             enable: true,
             opacity: 0.5,
@@ -86,7 +86,7 @@ import Particles from "react-tsparticles";
             enable: true,
             outMode: "bounce",
             random: false,
-            speed: 2,
+            speed: 0.5,
             straight: false,
           },
           number: {
@@ -94,7 +94,7 @@ import Particles from "react-tsparticles";
               enable: true,
               area: 800,
             },
-            value: 80,
+            value: 70,
           },
           opacity: {
             value: 0.5,

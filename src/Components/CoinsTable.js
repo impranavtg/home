@@ -10,13 +10,13 @@ import { Pagination } from '@material-ui/lab';
 
 const useStyles=makeStyles({
     table:{
-      backgroundColor:'#0F0E0E',
+      backgroundColor:'#1A1E25',
       boxShadow: '-2px 2px 5px 2px rgba(0,0,0,0.75)'
     },
     row:{
       cursor:"pointer",
       "&:hover":{
-        backgroundColor:"#000000",
+        backgroundColor:"#101216",
         transition:"0.2s ease-in-out"
       },
     },
@@ -48,7 +48,7 @@ const CoinsTable = () => {
 
   const darkTheme = createTheme({
     palette: {
-      primary: {main:'#212121'},
+      primary: {main:'#252A34'},
       type:'dark'
     },
   });
@@ -61,7 +61,7 @@ const CoinsTable = () => {
   return (
     <ThemeProvider theme={darkTheme}>
     <Container className={classes.table} style={{textAlign:'center'}}>
-    <Typography variant='h4' style={{borderBottom:'2px solid #F76E11',padding:20,color:'#F4F4F4',margin:15}}>Check and Compare Cryptocurrency Prices by Market Cap</Typography>
+    <Typography variant='h4' style={{borderBottom:'2px solid #FF2E63',padding:20,color:'#F4F4F4',margin:15}}>Check and Compare Cryptocurrency Prices by Market Cap</Typography>
     <Container>
     <TextField label="Search Crypto Currency" placeholder='Type here...' variant='outlined' style={{width:'90%',marginBottom:20}} onChange={(e)=>setSearch(e.target.value)}></TextField>
 
@@ -70,16 +70,16 @@ const CoinsTable = () => {
        }}
        onChange={(e)=>{setRows(e.target.value);setPage(1)}}
        >
-         <MenuItem value={10} style={{color:'#F76E11'}}>10</MenuItem>
-         <MenuItem value={20} style={{color:'#F76E11'}}>20</MenuItem>
-         <MenuItem value={50} style={{color:'#F76E11'}}>50</MenuItem>
+         <MenuItem value={10} style={{color:'#08D9D6'}}>10</MenuItem>
+         <MenuItem value={20} style={{color:'#08D9D6'}}>20</MenuItem>
+         <MenuItem value={50} style={{color:'#08D9D6'}}>50</MenuItem>
          </Select>
     </Container>
     <TableContainer>
       {loading?
       (<CircularProgress/>):(
         <Table>
-          <TableHead style={{backgroundColor:"#FF9F45"}}>
+          <TableHead style={{backgroundColor:"#08D9D6"}}>
             <TableRow>
               {["Rank","Coin","Price","24h %","Market Cap","Volume"].map(head=>(
                 <TableCell style={{color:"#212121",fontSize:18,fontWeight:700}} key={head} 

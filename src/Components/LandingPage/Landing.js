@@ -35,7 +35,7 @@ const Landing = () => {
     </Typography>
     <Typography variant='h6'
     style={{
-        color:'#B4C6A6',
+        color:'#08D9D6',
         fontFamily:'inherit',
         textTransform:'capitalize'
     }}> 
