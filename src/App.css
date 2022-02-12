@@ -15,4 +15,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #252A34;
 }
+.left h2,.left p{
+  color: black;
 
+}
+.hero p,.featured p,.signup .right p{
+  color: rgb(8, 217, 214);
+}
+.col h1,.col h5{
+  color:black;
+}
+.card h5,.card p{
+  color: black;
+}

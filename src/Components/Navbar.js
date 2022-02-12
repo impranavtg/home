@@ -28,7 +28,7 @@ const Navbar = () => {
      <AppBar position='static'>
        <Container>
        <Toolbar>
-       <Link to='/' className={classes.link}><Typography className={classes.logo} variant='h5'>Crypto Geeks</Typography></Link>
+       <Link to='/' className={classes.link}><Typography className={classes.logo} variant='h5'><span style={{color:'white'}}>Crypto </span>Geeks</Typography></Link>
        <Select variant='outlined' value={currency} style={{
          width:100,
          height:40,
