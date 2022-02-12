@@ -1,7 +1,6 @@
 import React from 'react'
 import './Signup.css'
-
-import Crypto from '../assets/trade.png'
+import Crypto from '../assets/img.png'
 
 const Signup = () => {
     return (

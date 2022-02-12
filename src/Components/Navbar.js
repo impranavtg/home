@@ -12,6 +12,16 @@ const useStyles=makeStyles(()=>({
     fontWeight:'bold',
     cursor:'pointer'
   },
+  headings:{
+    color:'#08D9D6',
+    fontFamily:'inherit',
+    fontWeight:600,
+    cursor:'pointer',
+    "&:hover":{
+      color:"#FF2E63",
+      transition:"0.2s ease-in-out"
+    },
+  }
 }));
 const Navbar = () => {
   const classes=useStyles();
@@ -28,7 +38,8 @@ const Navbar = () => {
      <AppBar position='static'>
        <Container>
        <Toolbar>
-       <Link to='/' className={classes.link}><Typography className={classes.logo} variant='h5'><span style={{color:'white'}}>Crypto </span>Geeks</Typography></Link>
+       <Link to='/home' className={classes.link}><Typography className={classes.logo} variant='h5'><span style={{color:'white'}}>Crypto </span>Geeks</Typography></Link>
+       <Link to='/articles' className={classes.link}><Typography className={classes.headings} variant='h6'>Articles</Typography></Link>
        <Select variant='outlined' value={currency} style={{
          width:100,
          height:40,

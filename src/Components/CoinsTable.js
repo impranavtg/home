@@ -10,6 +10,7 @@ import { Pagination } from '@material-ui/lab';
 
 const useStyles=makeStyles({
     table:{
+      width:"100%",
       backgroundColor:'#1A1E25',
       boxShadow: '-2px 2px 5px 2px rgba(0,0,0,0.75)'
     },

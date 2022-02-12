@@ -4,7 +4,7 @@ import Hero from './comp/Hero'
 import Navbar from './comp/Navbar'
 import Signup from './comp/Signup'
 import Footer from './comp/Footer'
-import './landing.css';
+import './Land.css';
 
 
 function Land() {

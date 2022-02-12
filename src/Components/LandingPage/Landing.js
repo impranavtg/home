@@ -21,10 +21,11 @@ const useStyles=makeStyles(()=>({
         textAlign:'center'
     }
 }));
+
 const Landing = () => {
       const classes=useStyles();
   return (
-    <>   
+    <> 
     <Container className={classes.container}>
     <div className={classes.tagline}>
     <Typography variant='h1' style={{

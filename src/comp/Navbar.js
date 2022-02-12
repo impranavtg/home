@@ -10,7 +10,7 @@ const handleClick = () => setClick(!click)
     return (
         <div className='header'>
             <div className='container'>
-                <h1>Crypto<span className='primary'>Geeks</span></h1>
+                <h1>Crypto <span className='primary'>Geeks</span></h1>
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                     <li>
                         <a href='/'>Home</a>
