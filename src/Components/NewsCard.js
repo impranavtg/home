@@ -20,7 +20,7 @@ export default class NewsCard extends Component {
                         <p>{description?description.slice(0,190):"Click the button below to read Full news in detail"}...</p>
                     </div>
                     <div className="cardButton">
-                        <a href={myUrl} target="_blank">Read More <i className="fas fa-angle-double-right"></i></a>
+                        <a href={myUrl} target="_blank"  rel="noreferrer">Read More <i className="fas fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </>

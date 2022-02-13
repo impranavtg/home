@@ -1,5 +1,6 @@
 {
   "name": "cryptogeeks",
+  "homepage": "https://impranavtg.github.io/Crypto-Geeks",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +14,7 @@
     "buffer": "^6.0.3",
     "chart.js": "^3.7.0",
     "firebase": "^9.6.6",
+    "gh-pages": "^3.2.3",
     "react": "^17.0.2",
     "react-alice-carousel": "^2.5.1",
     "react-chartjs-2": "^4.0.1",
@@ -26,6 +28,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

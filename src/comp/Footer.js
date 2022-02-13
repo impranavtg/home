@@ -13,26 +13,26 @@ const Footer = () => {
                     <h5>Support</h5>
                     <span className='bar'></span>
                         <a href='#contact'>Contact Us</a>
-                        <a href='#'>Chat</a>
-                        <a href='#'>Help Center</a>
-                        <a href='#'>FAQ</a>
+                        <p>Chat</p>
+                        <p>Help Center</p>
+                        <p>FAQ</p>
 
                 </div>
                 <div className='col'>
                     <h5>Company</h5>
                     <span className='bar'> </span>
-                        <a href='#'>About</a>
-                        <a href='#'>Information</a>
-                        <a href='#'>Legal</a>
-                        <a href='#'>Privacy</a>
+                        <p>About</p>
+                        <p>Information</p>
+                        <p>Legal</p>
+                        <p>Privacy</p>
                 </div>
                 <div className='col'>
                     <h5>Social</h5>
                     <span className='bar'> </span>
-                        <a href='#'><FaFacebook className='icon'/></a>
-                        <a href='#'><FaTwitter className='icon'/></a>
-                        <a href='#'><FaLinkedin className='icon'/></a>
-                        <a href='#'><FaGithub className='icon'/></a>
+                        <p><FaFacebook className='icon'/></p>
+                        <p><FaTwitter className='icon'/></p>
+                        <p><FaLinkedin className='icon'/></p>
+                        <p><FaGithub className='icon'/></p>
                 </div>
             </div>
             

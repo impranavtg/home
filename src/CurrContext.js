@@ -1,16 +1,16 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 // import { onSnapshot, doc } from "firebase/firestore";
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { CoinList } from './Api/Api';
+// import { CoinList } from './Api/Api';
 
 const Currency=createContext();
 const CurrContext = ({children}) => {
     const [currency,setCurrency]=useState('INR');
     const [symbol,setSymbol]=useState('₹');
-    const [coins,setCoins]=useState([]);
-    const [loading,setLoading]=useState(false);
+    // const [coins,setCoins]=useState([]);
+    // const [loading,setLoading]=useState(false);
     const [user, setUser] =useState(null);
     const [alert, setAlert] = useState({
       open: false,
@@ -25,12 +25,12 @@ const CurrContext = ({children}) => {
       });
     }, []);
 
-    const fetchCoins = async()=>{
-      setLoading(true);
-      const {data}=await axios.get(CoinList(currency));
-      setCoins(data);
-      setLoading(false);
-    };
+    // const fetchCoins = async()=>{
+    //   setLoading(true);
+    //   const {data}=await axios.get(CoinList(currency));
+    //   setCoins(data);
+    //   setLoading(false);
+    // };
 
     useEffect(()=>{
         if(currency==='INR')setSymbol('₹');
@@ -39,7 +39,7 @@ const CurrContext = ({children}) => {
 
 
   return (
-  <Currency.Provider value={{currency,setCurrency,symbol,alert,setAlert,user,coins,loading}}>
+  <Currency.Provider value={{currency,setCurrency,symbol,alert,setAlert,user}}>
   {children}
   </Currency.Provider>)
 };
