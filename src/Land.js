@@ -5,15 +5,17 @@ import Navbar from './comp/Navbar'
 import Signup from './comp/Signup'
 import Footer from './comp/Footer'
 import './Land.css';
+import Form from './comp/Form'
 
 
 function Land() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Hero />
       <Featured />
       <Signup />
+      <Form/>
       <Footer />
     </>
   );

@@ -3,14 +3,17 @@ import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import Carousel from './Carousel';
 
-const useStyles=makeStyles(()=>({
+const useStyles=makeStyles((theme)=>({
     container:{
         // border:'2px solid red',
         display:'flex',
         flexDirection:'column',
         justifyContent:'space-around',
         height:400,
-        paddingTop:25
+        paddingTop:25,
+        [theme.breakpoints.down("md")]:{
+            height:600
+          }
     },
     tagline:{
         display:'flex',

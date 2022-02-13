@@ -1,6 +1,7 @@
 import { BrowserRouter,Route, Routes } from 'react-router-dom';
 import './App.css';
-import Navbar from './Components/Navbar';
+// import Navbar from './Components/Navbar';
+import Navbar from './comp/Navbar';
 import Homepage from "./Homepage";
 import Land from "./Land.js";
 import Coins from "./Coins";
@@ -115,11 +116,13 @@ import Particles from "react-tsparticles";
       }}
     /> 
     <BrowserRouter>
+    <Navbar/>
         <Routes>
         <Route exact path="/" element={<Land/>} />
-        <Route exact path="/home" element={<><Navbar/><Homepage/></>} />
-        <Route exact path="/coins/:id" element={<><Navbar/><Coins/></>} />
-        <Route exact path="/articles" element={<><Navbar/><NewsSection/></>}/>
+        <Route exact path="/home" element={<Homepage/>} />
+        <Route exact path="/coins/:id" element={<Coins/>} />
+        <Route exact path="/articles" element={<NewsSection/>}/>
+        <Route exact path="/demo" element={<NewsSection/>}/>
         </Routes>
     </BrowserRouter>
     </div>

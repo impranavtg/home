@@ -30,7 +30,7 @@ export default class NewsSection extends Component {
   async componentDidMount() {
     this.setState({ loading: true });   
     const url = await axios.request(this.options).then(async(response)=> {
-      console.log(response.data);
+      // console.log(response.data);
       let parsedJsonData = await response.data;
       this.setState({
         articles: parsedJsonData.articles,

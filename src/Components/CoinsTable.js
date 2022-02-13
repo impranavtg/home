@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect } from 'react';
 import { CoinList } from '../Api/Api';
 import { CurrencyState } from '../CurrContext';
 import axios from 'axios';
@@ -35,16 +35,17 @@ const CoinsTable = () => {
     const [page,setPage]=useState(1);
     const [rows,setRows]=useState(10);
     const navigate=useNavigate();
-  const fetchCoins=async()=>{
+
+    const fetchCoins=async()=>{
     setLoading(true);
     const {data}=await axios.get(CoinList(currency));
     setCoins(data);
     setLoading(false);
   };
-  // console.log(coins);
+  
   useEffect(()=>{
       fetchCoins();
-       // eslint-disable-next-line react-hooks/exhaustive-deps
+       //eslint-disable-next-line react-hooks/exhaustive-deps
   },[currency]);
 
   const darkTheme = createTheme({
@@ -120,7 +121,7 @@ const CoinsTable = () => {
       }
     </TableContainer>
     <Pagination
-      count={(handleSearch()?.length/rows).toFixed(0)}
+      count={(handleSearch()?.length/rows)}
       style={{
         display:"flex",
         justifyContent:"center",

@@ -1,35 +1,48 @@
+import { MenuItem, Select } from '@material-ui/core';
 import React, {useState} from 'react'
 import {FaBars, FaTimes} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import AuthModal from '../Components/Authentication/AuthModal';
+import UserSidebar from "../Components/Authentication/UserSidebar";
+import { CurrencyState } from '../CurrContext';
 import './Navbar.css'
 
 const Navbar = () => {
 const [click, setClick] = useState(false)
 const handleClick = () => setClick(!click)
-
-
+const {currency,setCurrency,user} = CurrencyState();
     return (
         <div className='header'>
             <div className='container'>
-                <h1>Crypto <span className='primary'>Geeks</span></h1>
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                <Link to="/" className='logo'>Crypto <span className='primary'>Geeks</span></Link>
+                <ul className={click ? 'nav-menu active' : 'nav-menu not-active'}>
                     <li>
-                        <a href='/'>Home</a>
+                        <Link to='/home'>Coins</Link>
                     </li>
                     <li>
-                        <a href='/'>Featured</a>
+                        <Link to='/articles'>Articles</Link>
                     </li>
                     <li>
-                        <a href='/'>Earn</a>
+                        <Link to='/'>Learn</Link>
                     </li>
                     <li>
-                        <a href='/'>Contact</a>
+                        <a href='#contact'>Contact</a>
                     </li>
-                </ul>
-                <div className='btn-group'>
-                    <button className='btn'>Log In</button>
-                </div>
+                
+              <li>  <Select variant='outlined' value={currency} style={{
+         width:100,
+         height:40,
+       }}
+       onChange={(e)=>setCurrency(e.target.value)}
+       >
+         <MenuItem value={'INR'} style={{color:'#08D9D6'}}>INR</MenuItem>
+         <MenuItem value={'USD'} style={{color:'#08D9D6'}}>USD</MenuItem>
+       </Select></li>
+       </ul>
+               {user ? <UserSidebar /> : <AuthModal/>}
+               
                 <div className='hamburger' onClick={handleClick}>
-                    {click ? (<FaTimes size={20} style={{color: '#333'}}/>) : (<FaBars size={20} style={{color: '#333'}} />)}
+                    {click ? (<FaTimes size={20} style={{color: '#FFFFFF'}}/>) : (<FaBars size={20} style={{color: '#FFFFFF'}} />)}
                 </div>
             </div>
         </div>

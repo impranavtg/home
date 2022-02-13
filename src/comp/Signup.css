@@ -33,4 +33,7 @@
     .signup .container {
         grid-template-columns: 1fr;
     }
+    .signup img{
+        width: 200px;
+    }
 }
