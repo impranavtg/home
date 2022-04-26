@@ -13,7 +13,7 @@ function Land() {
       <Hero />
       <Featured />
       <Signup />
-      <Form/>
+//       <Form/>
       <Footer />
     </>
   );
