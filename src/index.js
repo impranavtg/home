@@ -5,10 +5,10 @@ import CurrContext from './CurrContext';
 import 'react-alice-carousel/lib/alice-carousel.css';
 
 ReactDOM.render(
-  // <React.StrictMode>
+  <React.StrictMode>
   <CurrContext>
     <App />
-    </CurrContext>,
-  // </React.StrictMode>,
+    </CurrContext>
+  </React.StrictMode>,
   document.getElementById('root')
 );
