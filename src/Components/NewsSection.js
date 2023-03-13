@@ -20,7 +20,7 @@ export default class NewsSection extends Component {
     url: 'https://api.newscatcherapi.com/v2/search',
     params: {q: 'Crypto', lang: 'en', sort_by: 'relevancy',page_size:90, page:1},
     headers: {
-      'x-api-key':'apyWZncsXQoxHUYH4lrF9esM7KazzWXtHKkSqG4CTyI' 
+      'x-api-key':'jre4my80b68jH0w0urr6Q_-W-2hSrPBVU_v9jUz8qHg' 
      //'ncWlWhbgf2u8xBpj8F3Bg4kBnoKONhZrKT-gRNak4FQ'
     }
   };
