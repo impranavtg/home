@@ -3,6 +3,7 @@ import NewsCard from "./NewsCard";
 import "./NewsSection.css";
 import { CircularProgress } from "@material-ui/core";
 import axios from 'axios';
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default class NewsSection extends Component {
   constructor() {
@@ -15,33 +16,45 @@ export default class NewsSection extends Component {
     };
     // console.log(this.state.page);
   }
-  options = {
-    method: 'GET',
-    url: 'https://api.newscatcherapi.com/v2/search',
-    params: {q: 'Crypto', lang: 'en', sort_by: 'relevancy',page_size:90, page:1},
-    headers: {
-      'x-api-key':'jre4my80b68jH0w0urr6Q_-W-2hSrPBVU_v9jUz8qHg' 
-     //'ncWlWhbgf2u8xBpj8F3Bg4kBnoKONhZrKT-gRNak4FQ'
-    }
-  };
+
+  
+
   
   static defaultProps = {
     page: 1,
   };
   async componentDidMount() {
     this.setState({ loading: true });   
-     await axios.request(this.options).then(async(response)=> {
-      // console.log(response.data);
+     await axios.request("https://newsdata.io/api/1/news?apikey=pub_304888950267ebdbfb25d4f7f0162431a081a&q=crypto").then(async(response)=> {
+      console.log(response.data);
       let parsedJsonData = await response.data;
       this.setState({
-        articles: parsedJsonData.articles,
-        totalResults: parsedJsonData.total_hits,
+        articles: parsedJsonData.results,
+        totalResults: parsedJsonData.totalResults,
         loading: false,
+        page:response.nextPage,
       });
     }).catch(function (error) {
       console.error(error);
     });
   }
+
+  fetchMoreData = async () => {
+    if(!this.state.page){
+      return;
+    }
+    
+    const url=`https://newsdata.io/api/1/news?apikey=pub_304888950267ebdbfb25d4f7f0162431a081a&q=crypto&language=en&page=${this.state.page}`;
+
+    await axios.request(url).then(res => res.json()).then(json => {
+                this.setState({
+      articles: this.state.articles.concat(json.results),
+      totalResults: json.totalResults,
+        loading: false,
+       page: json.nextPage
+    });})
+  };
+
   render() {
     return (
       <>
@@ -52,18 +65,25 @@ export default class NewsSection extends Component {
         </div>
         <div style={{display:"flex","justifyContent":"center",alignItems:"center",margin:"10px 0"}}>
         {this.state.loading && <CircularProgress style={{color:"#08D9D6"}} thickness={2}/>}</div>
+        <InfiniteScroll
+          dataLength={this.state.articles?.length}
+          next={this.fetchMoreData}
+          hasMore={this.state.articles.length !== this.state.totalResults}
+          loader={<CircularProgress style={{color:"#08D9D6"}} thickness={2}/>}
+          style={{ overflow: "hidden" }}
+        ></InfiniteScroll>
           <div className="newsContainer">
             {this.state.articles
               ? this.state.articles.map((element) => {
                   return (
                     <NewsCard
                       title={element?.title}
-                      description={element?.summary}
-                      imgUrl={element?.media}
-                      key={element?._id}
+                      description={element?.content}
+                      imgUrl={element?.image_url}
+                      key={element?.article_id}
                       myUrl={element?.link}
-                      author={element?.author}
-                      date={element.published_date}
+                      author={element?.creator}
+                      date={element?.pubDate}
                    />
                   );
                 })
