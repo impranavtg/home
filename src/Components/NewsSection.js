@@ -25,14 +25,14 @@ export default class NewsSection extends Component {
   };
   async componentDidMount() {
     this.setState({ loading: true });   
-     await axios.request("https://newsdata.io/api/1/news?apikey=pub_304888950267ebdbfb25d4f7f0162431a081a&q=crypto").then(async(response)=> {
+     await axios.request("https://newsdata.io/api/1/news?apikey=pub_34008949953e9376384e4768edc2829ff2126&q=crypto").then(async(response)=> {
       console.log(response.data);
       let parsedJsonData = await response.data;
       this.setState({
         articles: parsedJsonData.results,
         totalResults: parsedJsonData.totalResults,
         loading: false,
-        page:response.nextPage,
+        page:parsedJsonData.nextPage,
       });
     }).catch(function (error) {
       console.error(error);
@@ -40,19 +40,26 @@ export default class NewsSection extends Component {
   }
 
   fetchMoreData = async () => {
+
+    
     if(!this.state.page){
       return;
     }
     
-    const url=`https://newsdata.io/api/1/news?apikey=pub_304888950267ebdbfb25d4f7f0162431a081a&q=crypto&language=en&page=${this.state.page}`;
+    
+    const url=`https://newsdata.io/api/1/news?apikey=pub_34008949953e9376384e4768edc2829ff2126&q=crypto&language=en&page=${this.state.page}`;
 
-    await axios.request(url).then(res => res.json()).then(json => {
-                this.setState({
-      articles: this.state.articles.concat(json.results),
-      totalResults: json.totalResults,
+    await axios.request(url).then(async(response)=> {
+      console.log(response.data);
+      let parsedJsonData = await response.data;
+      this.setState({
+        articles: this.state.articles.concat(parsedJsonData.results),
+        totalResults: parsedJsonData.totalResults,
         loading: false,
-       page: json.nextPage
-    });})
+        page:parsedJsonData.nextPage,
+      });
+    })
+
   };
 
   render() {
@@ -69,7 +76,7 @@ export default class NewsSection extends Component {
           dataLength={this.state.articles?.length}
           next={this.fetchMoreData}
           hasMore={this.state.articles.length !== this.state.totalResults}
-          loader={<CircularProgress style={{color:"#08D9D6"}} thickness={2}/>}
+          // loader={<CircularProgress style={{color:"#08D9D6"}} thickness={2}/>}
           style={{ overflow: "hidden" }}
         ></InfiniteScroll>
           <div className="newsContainer">
