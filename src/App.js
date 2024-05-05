@@ -8,6 +8,7 @@ import Coins from "./Coins";
 import NewsSection from './Components/NewsSection'
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 import Particles from "react-tsparticles";
+import {Toaster} from "react-hot-toast"
 
  const App=()=> {
   const useStyles=makeStyles(()=>({
@@ -116,6 +117,10 @@ import Particles from "react-tsparticles";
       }}
     /> 
     <BrowserRouter>
+    <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
     <Navbar/>
         <Routes>
         <Route exact path="/" element={<Land/>} />

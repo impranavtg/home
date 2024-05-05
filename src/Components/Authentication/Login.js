@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CurrencyState } from "../../CurrContext";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import toast from 'react-hot-toast';
 
 const Login = ({ handleClose }) => {
   const [email, setEmail] = useState("");
@@ -17,6 +18,7 @@ const Login = ({ handleClose }) => {
         message: "Please fill all the Fields",
         type: "error",
       });
+      toast.error("Please fill all the Fields");
       return;
     }
 
@@ -27,6 +29,7 @@ const Login = ({ handleClose }) => {
         message: `Sign Up Successful. Welcome ${result.user.email}`,
         type: "success",
       });
+      toast.success(`Sign Up Successful. Welcome ${result.user.email}`);
 
       handleClose();
     } catch (error) {
@@ -35,6 +38,7 @@ const Login = ({ handleClose }) => {
         message: error.message,
         type: "error",
       });
+      toast.error(error.message);
       return;
     }
   };

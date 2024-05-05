@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CurrencyState } from "../../CurrContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import toast from "react-hot-toast";
 
 const Signup = ({ handleClose }) => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,7 @@ const Signup = ({ handleClose }) => {
         message: "Passwords do not match",
         type: "error",
       });
+      toast.error("Passwords do not match");
       return;
     }
 
@@ -32,6 +34,7 @@ const Signup = ({ handleClose }) => {
         message: `Sign Up Successful. Welcome ${result.user.email}`,
         type: "success",
       });
+      toast.success(`Sign Up Successful. Welcome ${result.user.email}`);
 
       handleClose();
     } catch (error) {
@@ -40,6 +43,7 @@ const Signup = ({ handleClose }) => {
         message: error.message,
         type: "error",
       });
+      toast.error(error.message);
       return;
     }
   };

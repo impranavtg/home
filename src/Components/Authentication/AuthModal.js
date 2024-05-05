@@ -10,6 +10,7 @@ import { CurrencyState } from "../../CurrContext";
 import { auth } from "../../firebase";
 import GoogleButton from "react-google-button";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -64,6 +65,7 @@ export default function AuthModal() {
           message: `Sign Up Successful. Welcome ${res.user.email}`,
           type: "success",
         });
+        toast.success(`Sign Up Successful. Welcome ${res.user.email}`);
 
         handleClose();
       })
@@ -73,6 +75,7 @@ export default function AuthModal() {
           message: error.message,
           type: "error",
         });
+        toast.error(error.message);
         return;
       });
   };

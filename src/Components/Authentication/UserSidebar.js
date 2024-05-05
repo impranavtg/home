@@ -5,6 +5,7 @@ import { Avatar, Button } from "@material-ui/core";
 import { CurrencyState } from "../../CurrContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
+import toast from "react-hot-toast";
 
 const useStyles = makeStyles({
   container: {
@@ -68,6 +69,7 @@ export default function UserSidebar() {
       type: "success",
       message: "Logout Successfull !",
     });
+    toast.success("Logout Successfull!")
 
     toggleDrawer();
   };

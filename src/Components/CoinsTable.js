@@ -28,17 +28,33 @@ const useStyles=makeStyles({
       }
 });
 const CoinsTable = () => {
-    const [coins,setCoins]=useState([]);
-    const [loading,setLoading]=useState(false);
-    const [search,setSearch]=useState('');
+    const [coins,setCoins]=React.useState([]);
+    const [loading,setLoading]=React.useState(false);
+    const [search,setSearch]=React.useState('');
     const {currency,symbol}=CurrencyState();
-    const [page,setPage]=useState(1);
-    const [rows,setRows]=useState(10);
+    const [page,setPage]=React.useState(1);
+    const [rows,setRows]=React.useState(10);
+    const [sort,setSort]=React.useState(1);
     const navigate=useNavigate();
 
     const fetchCoins=async()=>{
     setLoading(true);
     const {data}=await axios.get(CoinList(currency));
+    console.log(CoinList);
+  //   const {data}=await axios.post(CoinList(),{
+  //     "currency": `${currency}`,
+	// "sort": "rank",
+	// "order":'ascending',
+	// "offset": 0,
+	// "limit": 100,
+	// "meta": true
+  //   }, {
+  //     headers: {
+  //       'content-type': 'application/json',
+  //       'x-api-key':'d8fe361a-70b2-4159-a4c8-01388a2a5ecb'
+  //     }
+  //   });
+    console.log(data);
     setCoins(data);
     setLoading(false);
   };
@@ -58,14 +74,30 @@ const CoinsTable = () => {
   const classes=useStyles();
 
   const handleSearch=()=>{
-    return (coins.filter(coin=>coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search)));
+    return (coins.filter(coin=>coin?.name?.toLowerCase().includes(search) || coin?.code?.toLowerCase().includes(search)));
+  }
+
+  const handleSort=(e)=>{
+    const value=e.target.value;
+    let sortedCoins=JSON.parse(JSON.stringify(coins) || "{}");
+    if(sortedCoins && Object.keys(sortedCoins)?.length===0)return;
+    if(value===-1){
+      sortedCoins.sort((a,b)=>b.market_cap_rank-a.market_cap_rank);
+    }
+    else{
+      sortedCoins.sort((a,b)=>a.market_cap_rank-b.market_cap_rank);
+    }
+    console.log("----->",sortedCoins);
+    setCoins(sortedCoins);
+    setSort(value);
+    setPage(1);
   }
   return (
     <ThemeProvider theme={darkTheme}>
     <Container className={classes.table} style={{textAlign:'center'}}>
     <Typography variant='h4' style={{borderBottom:'2px solid #FF2E63',padding:20,color:'#F4F4F4',margin:15}}>Check and Compare Cryptocurrency Prices by Market Cap</Typography>
     <Container>
-    <TextField label="Search Crypto Currency" placeholder='Type here...' variant='outlined' style={{width:'90%',marginBottom:20}} onChange={(e)=>setSearch(e.target.value)}></TextField>
+    <TextField label="Search Crypto Currency" placeholder='Type here...' variant='outlined' style={{width:'70%',marginBottom:20}} onChange={(e)=>setSearch(e.target.value)}></TextField>
 
     <Select variant='outlined' value={rows} style={{
          width:"10%",
@@ -75,6 +107,14 @@ const CoinsTable = () => {
          <MenuItem value={10} style={{color:'#08D9D6'}}>10</MenuItem>
          <MenuItem value={20} style={{color:'#08D9D6'}}>20</MenuItem>
          <MenuItem value={50} style={{color:'#08D9D6'}}>50</MenuItem>
+         </Select>
+         <Select variant='outlined' value={sort} style={{
+         width:"20%",
+       }}
+       onChange={handleSort}
+       >
+         <MenuItem value={1} style={{color:'#08D9D6'}}>Ascending Order</MenuItem>
+         <MenuItem value={-1} style={{color:'#08D9D6'}}>Descending Order</MenuItem>
          </Select>
     </Container>
     <TableContainer>
@@ -91,28 +131,28 @@ const CoinsTable = () => {
           </TableHead>
           {/* .slice((page-1)*10,(page-1)*10+15) */}
           <TableBody>{handleSearch().slice((page-1)*rows,(page-1)*rows+rows).map(row=>{
-            let profit=row.price_change_percentage_24h>=0;
+            let profit=row?.price_change_percentage_24h>=0;
             return(
-              <TableRow className={classes.row} onClick={()=>navigate(`/coins/${row.id}`)} key={row.symbol} >
-              <TableCell align='left' style={{fontSize:16}}>{row.market_cap_rank}.</TableCell>
+              <TableRow className={classes.row} onClick={()=>navigate(`/coins/${row?.id}`)} key={row?.symbol} >
+              <TableCell align='left' style={{fontSize:16}}>{row?.market_cap_rank}.</TableCell>
                 <TableCell component="th" scope="row" style={
                   {
                     display:"flex",
                     gap:15
                   }
                 }>
-                <img src={row?.image} alt={row.name} height='50' />
+                <img src={row?.image} alt={row?.name} height='50' />
                 <div style={{display:"flex",flexDirection:"column"}}>
-                  <span style={{fontSize:20,textTransform:"uppercase"}}>{row.symbol}</span>
-                  <span style={{color:"#B4C6A6"}}>{row.name}</span>
+                  <span style={{fontSize:20,textTransform:"uppercase"}}>{row?.symbol}</span>
+                  <span style={{color:"#B4C6A6"}}>{row?.name}</span>
                 </div>
                 </TableCell>
-                <TableCell align="right" style={{fontSize:16}}>{symbol+" "} {numComa(row.current_price.toFixed(2))}</TableCell>
+                <TableCell align="right" style={{fontSize:16}}>{symbol+" "} {numComa(row?.current_price.toFixed(2))}</TableCell>
                 <TableCell align="right" style={{color:profit?"#4BB543":"red",fontSize:16}}>
-                  {profit && "+"}{row.price_change_percentage_24h.toFixed(2)}%
+                  {profit && "+"}{row?.price_change_percentage_24h?.toFixed(2)}%
                 </TableCell>
-                <TableCell align="right" style={{fontSize:15}}>{symbol+" "} {numComa(row.market_cap)}</TableCell>
-                <TableCell align="right" style={{fontSize:15}}>{symbol+" "} {numComa(row.total_volume)}</TableCell>
+                <TableCell align="right" style={{fontSize:15}}>{symbol+" "} {numComa(row?.market_cap)}</TableCell>
+                <TableCell align="right" style={{fontSize:15}}>{symbol+" "} {numComa(row?.total_volume)}</TableCell>
               </TableRow>
             )
           })}</TableBody>
